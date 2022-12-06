@@ -8,6 +8,8 @@ public class Bird : MonoBehaviour
     public float fuerzaSalto;
     public Rigidbody2D rigidbody2D;
 
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,15 @@ public class Bird : MonoBehaviour
 
             System.Threading.Thread.Sleep(30);
             animator.SetBool("estaSaltando", false);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstaculo")
+        {
+            
+            gameManager.gameOver = true;
         }
     }
 }
